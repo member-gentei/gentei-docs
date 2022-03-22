@@ -26,7 +26,7 @@ jobs:
       - name: doctave build && mv
         working-directory: main
         run: |
-          ./doctave build --release
+          ../doctave build --release
           rm -rf ../gh-pages/*
           mv site/* ../gh-pages/
       - name: git commit && git push
