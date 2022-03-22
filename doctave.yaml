@@ -1,0 +1,10 @@
+---
+title: "Gentei"
+navigation:
+  - path: docs/bot
+    children:
+      - path: docs/bot/roles.md
+      - path: docs/bot/commands.md
+      - path: docs/bot/audit.md
+  - path: docs/youtube-oauth.md
+  - path: docs/faq.md
