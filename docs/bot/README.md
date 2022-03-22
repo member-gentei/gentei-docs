@@ -6,7 +6,7 @@ Gentei's batteries-included Discord bot is called **gentei-bouncer#9835**. The s
 
 # Configuration
 
-Configuration happens as part of the self-enrollment process on [https://gentei.tindabox.net](https://gentei.tindabox.net). Upon enrollment, the bot inviter and server owners initialize (or are added to) an access list of users that are allowed to run [`/gentei manage`](bot/commands#/gentei-manage) commands.
+Configuration happens as part of the self-enrollment process on [https://gentei.tindabox.net](https://gentei.tindabox.net). Upon enrollment, the bot inviter and server owners initialize (or are added to) an access list of users that are allowed to run [`/gentei manage`](/bot/commands#/gentei-manage) commands.
 
 Please see the [Roles and Enforcement](/bot/roles) page for details on how Gentei manages roles.
 
