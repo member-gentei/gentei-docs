@@ -1,0 +1,170 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Audit log</title>
+    <meta name="description" content="Documentation for Gentei">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1647976696"
+        media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1647976696"
+        media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/katex.css?v=1647976696" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1647976696"
+        media="screen" />
+
+    <script>
+        var DOCTAVE_TIMESTAMP = "1647976696";
+        var BASE_PATH = "/";
+        var color = localStorage.getItem('doctave-color')
+
+        if (color === 'dark') {
+            document.getElementsByTagName('html')[0].classList.remove('light');
+            document.getElementsByTagName('html')[0].classList.add('dark');
+        } else {
+            document.getElementsByTagName('html')[0].classList.remove('dark');
+            document.getElementsByTagName('html')[0].classList.add('light');
+        }
+    </script>
+
+    
+</head>
+
+<body>
+    <label for='menu-toggle-switch' class='menu-toggle-button'>
+        ☰
+    </label>
+    <input type="checkbox" id="menu-toggle-switch" value='0' />
+    <div class='page'>
+        <div class='header'>
+            <div class='logo'>
+                
+                <h2 class='project-name'>
+                    <a href="/">
+                        Gentei
+                    </a>
+                </h2>
+            </div>
+            <div class='search'>
+                <form id='search-form'>
+    <input type='text' id='search-box' autocomplete="off" placeholder="Search..."></input>
+    <span class='search-icon'>S</span>
+    <ul id='search-results'></ul>
+</form>
+
+            </div>
+            <div class='header-dummy-right'>
+            </div>
+        </div>
+        <div class='container'>
+            <div class='sidebar-left'>
+                <nav class='site-nav'>
+    <ul>
+        
+            <li><a href="/bot">Discord bot</a></li>
+            
+                <ul>
+    
+        <li><a href="/bot/roles">Roles and Enforcement</a></li>
+        
+    
+        <li><a href="/bot/commands">Slash commands</a></li>
+        
+    
+        <li><a class="active" href="/bot/audit">Audit log</a></li>
+        
+    
+</ul>
+
+            
+        
+            <li><a href="/youtube-oauth">YouTube Permissions</a></li>
+            
+        
+            <li><a href="/faq">FAQ</a></li>
+            
+        
+    </ul>
+    <span id='light-dark-mode-switch'>
+        <svg xmlns="http://www.w3.org/2000/svg" id="dark-mode-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+        </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" id="light-mode-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+        </svg>
+    </span>
+</nav>
+
+            </div>
+            <div class='doctave-content'>
+                <h1 id="audit-log">Audit log</h1>
+<p>Gentei offers an enriched alternative to the built-in Discord audit log for role changes.</p>
+<p>Using <a href="/bot/commands#/gentei-manage-audit-set"><code>/gentei manage audit-set</code></a>, Gentei can be configured to send detailed audit log messages to a channel on the server.</p>
+<p><img src="/assets/slash-audit-set-example.png" alt="gentei manage audit-set-example"></p>
+<p>As shown above, each role change that <code>gentei-bouncer#9835</code> makes will send an accompanying message with the following info:</p>
+<ul>
+<li><strong>Name</strong>: the @mention of a user for easy reference. If a user leaves the server this becomes unusable, so the message also includes...</li>
+<li><strong>ID</strong>: the universally unique Discord user ID.</li>
+<li><strong>Action</strong>: the change made. This generally follows <strong>Grant @role</strong> or <strong>Revoke @role</strong>.</li>
+<li><strong>Timestamp</strong>: a <a href="https://discord.com/developers/docs/reference#message-formatting-timestamp-styles">formatted timestamp</a> of when the change was made. This may differ by a few seconds from Discord's built-in audit log - see below if you're curious.</li>
+<li><strong>Reason</strong>: a human-readable explanation of why role membership changed for this user.</li>
+</ul>
+<h1 id="timestamp-differences">Timestamp differences</h1>
+<p>The reason for differences between timestamps on Discord's audit log and the bot's audit log messages is very technical, but ultimately inconsequential.</p>
+<p>On large Discord servers, which are generally classified as 5000+ users, role changes have been observed to follow <a href="https://en.wikipedia.org/wiki/Eventual_consistency">eventual consistency</a>. However, the Discord API sometimes accepts the role change API call but doesn't actually ever make the change.</p>
+<p>There is unfortunately no way for the bot or any user to tell when a role change has <em>failed</em> to apply, so the bot will repeatedly make the API call every couple of seconds to change the role until the bot finally sees that it worked.</p>
+<p>Thus, the audit message timestamp contains when the bot <strong>observed the change</strong>. The Discord audit log contains the timestamp for when the server <strong>made the change</strong>.</p>
+<p>So if you see timestamp differences... congratulations? <em>Noblesse oblige</em>.</p>
+
+            </div>
+            <div class='sidebar-right'>
+                <div class='page-nav' id='page-nav'>
+                    <p class='page-nav-header'>On this page</p>
+                    <ul>
+                        
+                        <li class='page-nav-level-1'>
+                            <a href='#audit-log'>Audit log</a>
+                        </li>
+                        
+                        <li class='page-nav-level-1'>
+                            <a href='#timestamp-differences'>Timestamp differences</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class='wave-container'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill-opacity="0.35"
+                        d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                    <path fill-opacity="0.5"
+                        d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                    <path fill-opacity="0.2"
+                        d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                </svg>
+                <p>Powered by <a href='https://cli.doctave.com' target='_blank'>Doctave</a></p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/assets/katex.js?v=1647976696"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1647976696"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1647976696"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1647976696"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1647976696"></script>
+
+    
+</body>
+
+</html>
