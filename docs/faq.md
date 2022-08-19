@@ -29,3 +29,5 @@ I'll post in `#gentei-announce` and edit the text of this question if that chang
 The best way to do so is by posting in the `#gentei-限定` channel in the [Hololive Creators Club Discord](https://discord.gg/xJd9De).
 
 If you're a server moderator/owner/admin using Gentei, consider following the `#gentei-announce` channel to receive comms about new features, disruptions, and other announcement-worthy stuff.
+
+If you would prefer to reach out privately, feel free to DM `のヮの#6969` over Discord as well.
